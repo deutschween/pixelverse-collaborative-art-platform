@@ -1,0 +1,203 @@
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* Canvas Controls */
+#pixelCanvas {
+    image-rendering: pixelated;
+    cursor: crosshair;
+}
+
+#colorPicker {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+#colorPicker::-webkit-color-swatch {
+    border-radius: 8px;
+    border: 2px solid #e5e7eb;
+}
+
+#colorPicker::-moz-color-swatch {
+    border-radius: 8px;
+    border: 2px solid #e5e7eb;
+}
+
+/* Chat Messages */
+#chatMessages {
+    scrollbar-width: thin;
+    scrollbar-color: #888 #f1f1f1;
+}
+
+.message-enter {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.message-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 300ms, transform 300ms;
+}
+
+/* Case Opening Animation */
+@keyframes caseOpen {
+    0% {
+        transform: scale(0) rotate(0deg);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.2) rotate(180deg);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1) rotate(360deg);
+        opacity: 1;
+    }
+}
+
+.case-reward {
+    animation: caseOpen 0.6s ease-out;
+}
+
+/* Badge Icons */
+.badge-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ffd700, #ffa500);
+    color: white;
+    font-size: 12px;
+    margin-right: 4px;
+}
+
+/* Cooldown Timer */
+@keyframes cooldownProgress {
+    from {
+        width: 100%;
+    }
+    to {
+        width: 0%;
+    }
+}
+
+.cooldown-progress {
+    position: relative;
+    height: 4px;
+    background-color: #e5e7eb;
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.cooldown-progress::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: #3b82f6;
+    animation: cooldownProgress linear;
+    animation-play-state: running;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 1rem;
+    }
+
+    .grid-cols-12 {
+        grid-template-columns: 1fr;
+    }
+
+    .col-span-9,
+    .col-span-3 {
+        grid-column: span 12;
+    }
+
+    #pixelCanvas {
+        height: 60vh;
+    }
+
+    #chatMessages {
+        height: 40vh;
+    }
+}
+
+/* Loading States */
+.loading {
+    position: relative;
+}
+
+.loading::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: rgba(255, 255, 255, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    content: '\f110';
+    animation: fa-spin 1s linear infinite;
+}
+
+/* Tooltips */
+[data-tooltip] {
+    position: relative;
+}
+
+[data-tooltip]:hover::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0.5rem;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    font-size: 0.875rem;
+    border-radius: 0.25rem;
+    white-space: nowrap;
+    z-index: 10;
+}
+
+/* Inventory Item Styles */
+.inventory-item {
+    transition: transform 0.2s;
+}
+
+.inventory-item:hover {
+    transform: translateY(-2px);
+}
+
+/* Case Rarity Colors */
+.rarity-1 { color: #808080; } /* Common */
+.rarity-2 { color: #4CAF50; } /* Uncommon */
+.rarity-3 { color: #2196F3; } /* Rare */
+.rarity-4 { color: #9C27B0; } /* Epic */
+.rarity-5 { color: #FFC107; } /* Legendary */
