@@ -1,0 +1,36 @@
+User-agent: *
+Allow: /
+Allow: /index.php
+Allow: /auth/login.php
+Allow: /auth/register.php
+
+# Protect private areas
+Disallow: /api/
+Disallow: /config/
+Disallow: /includes/
+Disallow: /vendor/
+Disallow: /websocket/
+
+# Protect user data
+Disallow: /inventory.php
+
+# Prevent indexing of error pages
+Disallow: /404.php
+Disallow: /403.php
+Disallow: /500.php
+
+# Prevent indexing of system files
+Disallow: /*.json$
+Disallow: /*.lock$
+Disallow: /*.sql$
+Disallow: /*.config$
+Disallow: /*.env$
+Disallow: /*.md$
+Disallow: /.git/
+Disallow: /.htaccess
+
+# Sitemap
+Sitemap: https://yourdomain.com/sitemap.xml
+
+# Crawl-delay
+Crawl-delay: 10
